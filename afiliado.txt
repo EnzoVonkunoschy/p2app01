@@ -1,0 +1,1 @@
+{"nombre":"Enzo","edad":56,"afiliado":true}
