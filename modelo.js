@@ -34,7 +34,7 @@ function leerObjeto(){
 function guardarColeccion(col){
     fs.writeFileSync('./coleccion.txt',JSON.stringify(col))
 }
-//uardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}])
+//guardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}])
 
 function leerColeccion(){
     const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
@@ -58,14 +58,29 @@ function agregarElemento(elem){
  
     fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-//agregarElemento({nombre: "Pedro",edad: 34, afiliado: false})
+//agregarElemento({nombre: "Gise",edad: 22, afiliado: true})
 
 function eliminarElemento(elem){
     //Leer la colección
-
+    let coleccion = []
+    try{
+        const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
+        if(strColeccion){
+            coleccion = JSON.parse(strColeccion)
+            coleccion.push(elem)
+        }         
+    }catch (error){
+        console.log("No se puede leer la colección")
+    }
     //Filtrar elementos distintos con .filter(...)
-
+    coleccion = coleccion.filter (e=>
+        e.nombre !== elem.nombre ||
+        e.edad !== elem.edad ||
+        e.afiliado !== elem.afiliado
+    )
     //Guardar la colección de elementos distintos
+    fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-//eliminarElemento({nombre: ...., ....})
+//eliminarElemento({nombre: "Gise",edad: 22, afiliado: true})
+//eliminarElemento({nombre: "Coco",edad: 20, afiliado: true})
 
