@@ -62,16 +62,9 @@ function agregarElemento(elem){
 
 function eliminarElemento(elem){
     //Leer la colección
-    let coleccion = []
-    try{
-        const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
-        if(strColeccion){
-            coleccion = JSON.parse(strColeccion)
-            coleccion.push(elem)
-        }         
-    }catch (error){
-        console.log("No se puede leer la colección")
-    }
+    const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
+    coleccion = JSON.parse(strColeccion)
+                 
     //Filtrar elementos distintos con .filter(...)
     coleccion = coleccion.filter (e=>
         e.nombre !== elem.nombre ||
@@ -81,6 +74,6 @@ function eliminarElemento(elem){
     //Guardar la colección de elementos distintos
     fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-//eliminarElemento({nombre: "Gise",edad: 22, afiliado: true})
-//eliminarElemento({nombre: "Coco",edad: 20, afiliado: true})
+
+eliminarElemento({nombre: "Gise",edad: 22, afiliado: true})
 
