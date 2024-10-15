@@ -21,7 +21,7 @@ function guardarObjeto(){
     const unAfiliado = {nombre: "Enzo", edad:56, afiliado: true}
     fs.writeFileSync('./afiliado.txt',JSON.stringify(unAfiliado))
 }
-//guardarObjeto()
+guardarObjeto()
 
 function leerObjeto(){
     const strObjeto = fs.readFileSync('./afiliado.txt','utf-8')
@@ -34,7 +34,7 @@ function leerObjeto(){
 function guardarColeccion(col){
     fs.writeFileSync('./coleccion.txt',JSON.stringify(col))
 }
-//uardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}])
+//guardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}])
 
 function leerColeccion(){
     const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
@@ -42,7 +42,7 @@ function leerColeccion(){
     const coleccion = JSON.parse(strColeccion)
     console.log(coleccion)
 }
-//leerColeccion()
+leerColeccion()
 
 function agregarElemento(elem){
     let coleccion = []
@@ -58,14 +58,31 @@ function agregarElemento(elem){
  
     fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-//agregarElemento({nombre: "Pedro",edad: 34, afiliado: false})
+//agregarElemento({nombre: "Agustin",edad: 22, afiliado: false})
 
 function eliminarElemento(elem){
     //Leer la colección
-
+    let coleccion = []
+    try{
+        const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
+        if(strColeccion){
+            coleccion = JSON.parse(strColeccion)
+        }         
+    }catch (error){
+        console.log("Error al leer la colección")
+    }
     //Filtrar elementos distintos con .filter(...)
-
+    coleccionFiltrada = coleccion.filter(item => 
+        !(item.nombre === elem.nombre && item.edad === elem.edad && item.afiliado === elem.afiliado)
+    );
     //Guardar la colección de elementos distintos
+    try {
+        fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccionFiltrada))
+        console.log("Elemento eliminado con éxito");
+    } catch (error) {
+        console.log("Error al guardar la colección actualizada:", error.message);
+    }
+ 
 }
-//eliminarElemento({nombre: ...., ....})
+//eliminarElemento({"nombre":"Pedro","edad":34,"afiliado":false}) 
 

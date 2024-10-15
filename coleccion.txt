@@ -1,1 +1,1 @@
-[{"nombre":"Luisa","edad":34,"afiliado":false},{"nombre":"Pedro","edad":34,"afiliado":false}]
+[{"nombre":"Enzo","edad":56,"afiliado":true},{"nombre":"Luna","edad":30,"afiliado":false},{"nombre":"Agustin","edad":22,"afiliado":false}]
