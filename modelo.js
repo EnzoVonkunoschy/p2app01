@@ -1,3 +1,5 @@
+
+const e = require('express')
 const fs = require('fs')
 
 function guardarTexto(){
@@ -34,7 +36,7 @@ function leerObjeto(){
 function guardarColeccion(col){
     fs.writeFileSync('./coleccion.txt',JSON.stringify(col))
 }
-//uardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}])
+//guardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}])
 
 function leerColeccion(){
     const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
@@ -60,12 +62,28 @@ function agregarElemento(elem){
 }
 //agregarElemento({nombre: "Pedro",edad: 34, afiliado: false})
 
+
 function eliminarElemento(elem){
+    
     //Leer la colección
+    const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
+    
+    var coleccion = JSON.parse(strColeccion)
 
     //Filtrar elementos distintos con .filter(...)
 
+coleccion= coleccion.filter(e=>
+    e.nombre !== elem.nombre ||
+    e.edad !== elem.edad ||
+    e.afiliado !== elem.afiliado
+
+)
+
+
+
+    
     //Guardar la colección de elementos distintos
+    fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-//eliminarElemento({nombre: ...., ....})
+eliminarElemento({nombre: "Pedro", edad:34,afiliado:false})
 
