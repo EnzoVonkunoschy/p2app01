@@ -61,11 +61,22 @@ function agregarElemento(elem){
 //agregarElemento({nombre: "Pedro",edad: 34, afiliado: false})
 
 function eliminarElemento(elem){
-    //Leer la colección
+    try {
+        // Leer la colección desde el archivo
+        const strColeccion = fs.readFileSync('./coleccion.txt', 'utf-8');
+        const coleccion = JSON.parse(strColeccion);
 
-    //Filtrar elementos distintos con .filter(...)
+        // Filtrar los elementos que no coincidan con el elemento a eliminar
+        const coleccionFiltrada = coleccion.filter(e => 
+            !(e.nombre === elem.nombre && e.edad === elem.edad && e.afiliado === elem.afiliado)
+        );
 
-    //Guardar la colección de elementos distintos
+        // Guardar la colección filtrada en el archivo
+        fs.writeFileSync('./coleccion.txt', JSON.stringify(coleccionFiltrada));
+        console.log("Elemento eliminado correctamente.");
+    } catch (error) {
+        console.log("Error al eliminar el elemento:", error.message);
+    }
 }
 //eliminarElemento({nombre: ...., ....})
 
