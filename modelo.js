@@ -4,7 +4,7 @@ function guardarTexto(){
     fs.writeFileSync('./miTexto.txt',"Oid mortales el grito sagrado.")
 }
 
-//guardarTexto();
+guardarTexto();
 
 function leerTexto(){
     try{
@@ -15,13 +15,13 @@ function leerTexto(){
         console.log("Error al leer el archivo")
     }
 }
-//leerTexto()
+leerTexto()
 
 function guardarObjeto(){
     const unAfiliado = {nombre: "Enzo", edad:56, afiliado: true}
     fs.writeFileSync('./afiliado.txt',JSON.stringify(unAfiliado))
 }
-//guardarObjeto()
+guardarObjeto()
 
 function leerObjeto(){
     const strObjeto = fs.readFileSync('./afiliado.txt','utf-8')
@@ -29,20 +29,20 @@ function leerObjeto(){
     const objeto = JSON.parse(strObjeto)
     console.log(objeto)
 }
-//leerObjeto()
+leerObjeto()
 
 function guardarColeccion(col){
     fs.writeFileSync('./coleccion.txt',JSON.stringify(col))
 }
-//uardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}])
+//guardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}, {nombre:"Paula", edad:30, afiliado: false}])
 
 function leerColeccion(){
     const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
     console.log(strColeccion)
     const coleccion = JSON.parse(strColeccion)
-    console.log(coleccion)
+    console.log(coleccion) 
 }
-//leerColeccion()
+leerColeccion()
 
 function agregarElemento(elem){
     let coleccion = []
@@ -58,14 +58,25 @@ function agregarElemento(elem){
  
     fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-//agregarElemento({nombre: "Pedro",edad: 34, afiliado: false})
+agregarElemento({nombre: "Pablo",edad: 34, afiliado: false})
 
-function eliminarElemento(elem){
-    //Leer la colección
 
-    //Filtrar elementos distintos con .filter(...)
-
-    //Guardar la colección de elementos distintos
+function eliminarElemento(elem) {
+    try {
+        // Leer la colección del archivo
+        const strColeccion = fs.readFileSync('./coleccion.txt', 'utf-8');
+        let coleccion = JSON.parse(strColeccion);
+        
+        // Filtrar los elementos distintos al que quieres eliminar
+        let nuevacoleccion = coleccion.filter(e => e.nombre == elem.nombre || e.edad == elem.edad || e.afiliado == elem.afiliado);
+        
+        // Guardar la colección filtrada en el archivo
+        fs.writeFileSync('./coleccion.txt', JSON.stringify(nuevacoleccion));
+        console.log('Elemento eliminado correctamente');
+    } catch (error) {
+        console.log('Error al eliminar el elemento:', error.message);
+    }
 }
-//eliminarElemento({nombre: ...., ....})
 
+// Llamada a la función eliminarElemento para probarla
+eliminarElemento({nombre: "Enzo", edad: 56, afiliado: true});
