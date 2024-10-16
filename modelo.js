@@ -69,3 +69,25 @@ function eliminarElemento(elem){
 }
 //eliminarElemento({nombre: ...., ....})
 
+function eliminarElemento(elem){
+    try {
+        // Leer la colección actual desde el archivo
+        const strColeccion = fs.readFileSync('./coleccion.txt', 'utf-8');
+        let coleccion = JSON.parse(strColeccion);
+
+        // Filtrar los elementos que no coincidan con el que se va a eliminar
+        coleccion = coleccion.filter(item => {
+            return item.nombre !== elem.nombre || item.edad !== elem.edad || item.afiliado !== elem.afiliado;
+        });
+
+        // Guardar la colección actualizada
+        fs.writeFileSync('./coleccion.txt', JSON.stringify(coleccion));
+        console.log("Elemento eliminado correctamente");
+
+    } catch (error) {
+        console.log("Error al eliminar el elemento:", error.message);
+    }
+}
+
+// Ejemplo de uso:
+ eliminarElemento({nombre: "Pedro", edad: 34, afiliado: false});
