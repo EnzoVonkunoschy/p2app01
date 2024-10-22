@@ -67,9 +67,9 @@ function eliminarElemento(elem){
                  
     //Filtrar elementos distintos con .filter(...)
     coleccion = coleccion.filter (e=>
-        e.nombre !== elem.nombre ||
-        e.edad !== elem.edad ||
-        e.afiliado !== elem.afiliado
+        !(e.nombre === elem.nombre &&
+        e.edad === elem.edad &&
+        e.afiliado === elem.afiliado)
     )
     //Guardar la colección de elementos distintos
     fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
