@@ -58,7 +58,7 @@ function agregarElemento(elem){
  
     fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-agregarElemento({nombre: "Pedro",edad: 34, afiliado: false})
+//agregarElemento({nombre: "Coco",edad: 34, afiliado: false})
 
 function eliminarElemento(elem){
     //Leer la colección
@@ -67,13 +67,13 @@ function eliminarElemento(elem){
     coleccion = JSON.parse(strColeccion)
     
     //Filtrar elementos distintos con .filter(...)
-    coleccion  = coleccion.filter(e=> 
-        e.nombre !== elem.nombre||
-        e.edad !== elem.edad ||
+    coleccion = coleccion.filter(e=> 
+        e.nombre !== elem.nombre &&
+        e.edad !== elem.edad &&
         e.afiliado !== elem.afiliado
     )
 
     //Guardar la colección de elementos distintos
     fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-//eliminarElemento({nombre:"Luisa", edad:34, afiliado:false});
+eliminarElemento({nombre:"Alex", edad:34, afiliado:false});
