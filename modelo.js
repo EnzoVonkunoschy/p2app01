@@ -72,9 +72,9 @@ function eliminarElemento(elem){
 
     //Filtrar elementos distintos con .filter(...)
 
-coleccion= coleccion.filter(e=>
-    e.nombre !== elem.nombre ||
-    e.edad !== elem.edad ||
+coleccion= coleccion.filter(e=> 
+    e.nombre !== elem.nombre && 
+    e.edad !== elem.edad && 
     e.afiliado !== elem.afiliado
 
 )
