@@ -4,7 +4,7 @@ function guardarTexto(){
     fs.writeFileSync('./miTexto.txt',"Oid mortales el grito sagrado.")
 }
 
-guardarTexto();
+//guardarTexto();
 
 function leerTexto(){
     try{
@@ -21,7 +21,7 @@ function guardarObjeto(){
     const unAfiliado = {nombre: "Enzo", edad:56, afiliado: true}
     fs.writeFileSync('./afiliado.txt',JSON.stringify(unAfiliado))
 }
-guardarObjeto()
+//guardarObjeto()
 
 function leerObjeto(){
     const strObjeto = fs.readFileSync('./afiliado.txt','utf-8')
@@ -29,12 +29,12 @@ function leerObjeto(){
     const objeto = JSON.parse(strObjeto)
     console.log(objeto)
 }
-leerObjeto()
+//leerObjeto()
 
 function guardarColeccion(col){
     fs.writeFileSync('./coleccion.txt',JSON.stringify(col))
 }
-//GuardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}])
+//uardarColeccion([{nombre: "Enzo", edad: 56, afiliado: true},{nombre:"Luna", edad:30, afiliado: false}])
 
 function leerColeccion(){
     const strColeccion = fs.readFileSync('./coleccion.txt','utf-8')
@@ -42,7 +42,7 @@ function leerColeccion(){
     const coleccion = JSON.parse(strColeccion)
     console.log(coleccion)
 }
-leerColeccion()
+//leerColeccion()
 
 function agregarElemento(elem){
     let coleccion = []
@@ -58,7 +58,7 @@ function agregarElemento(elem){
  
     fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-agregarElemento({nombre: "Aldana",edad: 28, afiliado: false})
+//agregarElemento({nombre: "Pedro",edad: 34, afiliado: false})
 
 function eliminarElemento(elem){
     try {
@@ -78,6 +78,4 @@ function eliminarElemento(elem){
         console.log("Error al eliminar el elemento:", error.message);
     }
 }
-eliminarElemento({nombre: "Luisa", edad: 34, afiliado: false});
-
-
+eliminarElemento({nombre: "Pedro", edad: 34,afiliado:false});
