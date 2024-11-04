@@ -58,7 +58,7 @@ function agregarElemento(elem){
  
     fs.writeFileSync('./coleccion.txt',JSON.stringify(coleccion))
 }
-agregarElemento({nombre: "Aldana",edad: 28, afiliado: false})
+agregarElemento({nombre: "Emanuel",edad: 23, afiliado: true})
 
 function eliminarElemento(elem){
     try {
@@ -78,6 +78,6 @@ function eliminarElemento(elem){
         console.log("Error al eliminar el elemento:", error.message);
     }
 }
-eliminarElemento({nombre: "Luisa", edad: 34, afiliado: false});
+eliminarElemento({nombre: "Pedro", edad: 34, afiliado: false});
 
 
